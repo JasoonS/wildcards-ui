@@ -141,6 +141,7 @@ const Partners = () => {
         alignItems={"stretch"}
         style={{ backgroundColor: "#73C8D7" }}
         px={50}
+        pb={50}
       >
         {conservationPartners.map((conservation) => (
           <Box mt={20} mb={20} width={[1, 1, 0.18]} color="black">
