@@ -87,6 +87,42 @@ const Partners = () => {
         flexWrap={"wrap"}
         justifyContent={"space-around"}
         alignItems={"stretch"}
+        px={50}
+        pt={50}
+        style={{ backgroundColor: "#73C8D7" }}
+      >
+        <h1>Conservation Partners</h1>
+      </Flex>
+      <Flex
+        flexWrap={"wrap"}
+        justifyContent={"space-around"}
+        alignItems={"stretch"}
+        style={{ backgroundColor: "#73C8D7" }}
+        px={50}
+        pb={50}
+      >
+        {conservationPartners.map((conservation) => (
+          <Box mt={20} mb={20} width={[1, 1, 0.18]} color="black">
+            <Card style={styles.card}>
+              <a href={conservation.url}>
+                <img
+                  src={conservation.logo}
+                  alt={conservation.name}
+                  style={styles.logo}
+                />
+              </a>
+            </Card>
+          </Box>
+        ))}
+        <Box width={[1, 1, 0.18]} color="black"></Box>
+        <Box width={[1, 1, 0.18]} color="black"></Box>
+        <Box width={[1, 1, 0.18]} color="black"></Box>
+        <Box width={[1, 1, 0.18]} color="black"></Box>
+      </Flex>
+      <Flex
+        flexWrap={"wrap"}
+        justifyContent={"space-around"}
+        alignItems={"stretch"}
         className={infoBackground}
         px={50}
       >
@@ -124,42 +160,6 @@ const Partners = () => {
             </a>
           </Card>
         </Box>
-      </Flex>
-      <Flex
-        flexWrap={"wrap"}
-        justifyContent={"space-around"}
-        alignItems={"stretch"}
-        px={50}
-        pt={50}
-        style={{ backgroundColor: "#73C8D7" }}
-      >
-        <h1>Conservation Partners</h1>
-      </Flex>
-      <Flex
-        flexWrap={"wrap"}
-        justifyContent={"space-around"}
-        alignItems={"stretch"}
-        style={{ backgroundColor: "#73C8D7" }}
-        px={50}
-        pb={50}
-      >
-        {conservationPartners.map((conservation) => (
-          <Box mt={20} mb={20} width={[1, 1, 0.18]} color="black">
-            <Card style={styles.card}>
-              <a href={conservation.url}>
-                <img
-                  src={conservation.logo}
-                  alt={conservation.name}
-                  style={styles.logo}
-                />
-              </a>
-            </Card>
-          </Box>
-        ))}
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
       </Flex>
     </div>
   );
