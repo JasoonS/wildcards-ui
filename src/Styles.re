@@ -267,24 +267,9 @@ let floatingSignupBox =
     // backgroundColor(`hex("fff")),
     // boxShadow10(px(0), px(2), px(4), px(0), `rgba((136,144,195,0.2)), px(0), px(5), px(15), px(0), `rgba((37,44,97,0.15)))
   ]);
-let floatingSignupBoxInner =
-  style([
-    // margin2(~v=em(3.), ~h=auto),
-    // padding2(~v=em(3.), ~h=em(3.)),
-    padding(em(3.)),
-  ]);
-let emailSignupHeader =
-  style([
-    fontSize(px(24)),
-    // padding2(~v=em(3.), ~h=em(3.)),
-    // padding(em(3.)),
-  ]);
-let emailTextBox =
-  style(
-    [] // padding(`auto),
-    // padding2(~v=auto, ~h=auto),
-    // padding(em(3.)),
-  );
+let floatingSignupBoxInner = style([padding(em(3.))]);
+let emailSignupHeader = style([fontSize(px(24))]);
+let emailTextBox = style([]);
 
 let inputElements = style([padding(em(0.1))]);
 

@@ -102,7 +102,7 @@ const Partners = () => {
         pb={50}
       >
         {conservationPartners.map((conservation) => (
-          <Box mt={20} mb={20} width={[1, 1, 0.18]} color="black">
+          <Box mt={20} mb={20} width={[0.45, 0.45, 0.18]} color="black">
             <Card style={styles.card}>
               <a href={conservation.url}>
                 <img
@@ -114,10 +114,10 @@ const Partners = () => {
             </Card>
           </Box>
         ))}
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
-        <Box width={[1, 1, 0.18]} color="black"></Box>
+        <Box width={[0.45, 0.45, 0.18]} color="black"></Box>
+        <Box width={[0.45, 0.45, 0.18]} color="black"></Box>
+        <Box width={[0.45, 0.45, 0.18]} color="black"></Box>
+        <Box width={[0.45, 0.45, 0.18]} color="black"></Box>
       </Flex>
       <Flex
         flexWrap={"wrap"}
