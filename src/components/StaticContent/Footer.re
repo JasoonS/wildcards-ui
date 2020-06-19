@@ -165,6 +165,17 @@ let make = () =>
             fgColor="#aaa"
           />
         </li>
+        <li className=footerSocialButton>
+          <SocialButtons
+            className=footerSocailButtonLink
+            url="https://www.linkedin.com/company/wildcards-world/"
+            bgColor="transparent"
+            target="_blank"
+            rel="noopener noreferrer"
+            network="linkedin"
+            fgColor="#aaa"
+          />
+        </li>
       </ul>
     </div>
   </Rimble.Box>;

@@ -164,7 +164,7 @@ let make = () => {
   let toggleAccordion = (faqItemIndex, ()) => {
     setActiveIndex(_ => faqItemIndex == activeIndex ? (-1) : faqItemIndex);
   };
-  <div>
+  <div className=Styles.infoBackground>
     <Rimble.Box className=Styles.floatingSignupBox>
       <Rimble.Flex
         flexWrap="wrap"
