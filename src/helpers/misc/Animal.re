@@ -19,6 +19,7 @@ type t =
   | Tarkus
   | Ucok
   | Arthur
+  | Abo
   | Hook;
 
 let orderedArray = [|
@@ -42,6 +43,7 @@ let orderedArray = [|
   Arthur,
   Tarkus,
   Ucok,
+  Abo,
   Hook,
 |];
 
@@ -68,6 +70,7 @@ let getId: t => string =
     | Mijungla => "17"
     | Ajayu => "18"
     | Arthur => "19"
+    | Abo => "20"
     | Vitalik => "42"
     };
 
@@ -95,6 +98,7 @@ let getTokenId: t => TokenId.t =
     | Mijungla => TokenId.makeFromInt(17)
     | Ajayu => TokenId.makeFromInt(18)
     | Arthur => TokenId.makeFromInt(19)
+    | Abo => TokenId.makeFromInt(20)
     };
 
 let getNameFromId: string => string =
@@ -120,6 +124,7 @@ let getNameFromId: string => string =
     | "17" => "Mijungla"
     | "18" => "Ajayu"
     | "19" => "Arthur"
+    | "20" => "Abo"
     | "42" => "Vitalik"
     | _ => "Unknown"
     };
@@ -148,6 +153,7 @@ let getName: t => string =
     | Tarkus => "Tarkus"
     | Arthur => "Arthur"
     | Hook => "Hook"
+    | Abo => "Abo"
     };
 
 let getAnimal: string => option(t) =
@@ -175,6 +181,7 @@ let getAnimal: string => option(t) =
     | "ucok" => Some(Ucok)
     | "hook" => Some(Hook)
     | "arthur" => Some(Arthur)
+    | "abo" => Some(Abo)
     | _ => None
     };
   };
@@ -203,6 +210,7 @@ let getAnimalFromId: string => option(t) =
     | "17" => Some(Mijungla)
     | "18" => Some(Ajayu)
     | "19" => Some(Arthur)
+    | "20" => Some(Abo)
     | "42" => Some(Vitalik)
     | _ => None
     };
@@ -211,8 +219,9 @@ let getAnimalFromId: string => option(t) =
 let getNextPrev = animal =>
   switch (animal) {
   | Simon => (Vitalik, Dlala)
-  | Vitalik => (Arthur, Simon)
-  | Arthur => (Ajayu, Vitalik)
+  | Vitalik => (Abo, Simon)
+  | Abo => (Arthur, Vitalik)
+  | Arthur => (Ajayu, Abo)
   | Ajayu => (Andy, Arthur)
   | Andy => (Verano, Ajayu)
   | Verano => (Pancho, Andy)
@@ -255,6 +264,7 @@ let getImage = animal => {
   | Mijungla => "https://dd2wadt5nc0o7.cloudfront.net/17-mijungla.svg"
   | Ajayu => "https://dd2wadt5nc0o7.cloudfront.net/18-ajayu.svg"
   | Arthur => "https://dd2wadt5nc0o7.cloudfront.net/19-arthur-updated.svg"
+  | Abo => "https://dd2wadt5nc0o7.cloudfront.net/abo.svg"
   | Vitalik => "https://dd2wadt5nc0o7.cloudfront.net/42-vitalik.svg"
   };
 };
@@ -285,6 +295,7 @@ let getAlternateImage: t => option(string) =
     | Hook => Some("/img/animals/HookReal.jpg")
     | Mijungla => Some("/img/animals/MijunglaReal.png")
     | Ajayu => Some("/img/animals/AjayuReal.jpg")
+    | Abo => Some("https://dd2wadt5nc0o7.cloudfront.net/animals/abo-real.jpg")
     };
 
 let getOrgBadgeImage: t => string =
@@ -311,6 +322,7 @@ let getOrgBadgeImage: t => string =
     | Ucok => "/img/badges/DarwinAnimalDoctors.svg"
     | Hook => "https://dd2wadt5nc0o7.cloudfront.net/conservations/great-whale-conservancy.png"
     | Arthur => "https://dd2wadt5nc0o7.cloudfront.net/conservations/care-for-wild-non-profit.svg"
+    | Abo => "https://dd2wadt5nc0o7.cloudfront.net/conservations/bdi.svg"
     // | _ => None
     };
 
@@ -327,6 +339,14 @@ let getStoryParagraphs = animal =>
       "For months, his wounds were treated every 3-5 days, with the support of various veterinarians, surgeons, and wound care specialists. We are happy to say that Arthur's wound have now completely healed, and only the scars remain.",
       "Arthur has also made many friends at Care for Wild Rhino Sanctuary. These include orphan rhino Summer (his best and most loyal friend), K9 puppy in training Looney, his boma-mates Sophia, Kayla-Milan and Sparkle, as well as some of the older orphans Fern, Rubybelle, Rose-Petal, Khanya, and Zac. Arthur enjoys his daily walks and naps on the grass lawns of Care for Wild Rhino Sanctuary, together with Summer and the rest of his crash.",
       "It is truly a blessing to have little Arthur, The Brave, enjoying his new life, despite the horror he has experienced so early in his fragile life. Care for Wild Rhino Sanctuary would like to thank everyone involved in Arthur's rescue, his wound and general care. The love and support Arthur has received has made an amazing difference in this little orphaned rhino's life. Thank you.",
+    |]
+  | Abo => [|
+      "African Black Oystercatcher",
+      "My nickname is Abo. My surname is Haematopus, and my first name is moquini, and yes it really is spelt with a small 'm'. I hate it when people write it with a capital letter. English-speaking people call me African Black Oystercatcher, but that is too much of a mouthful, so I am Abo for short.",
+      "I live on Robben Island, and have been doing so for about 30 years. I am now one of the oldest oystercatchers on the island. The institutional memory resides with me.",
+      "I was hatched here. My parents looked after me until I was a few months old. They showed me how to get mussels off the rocks. It's not an easy thing to do. But once I mastered this technique, they got nasty, and chased me out their territory. I headed north along the coast. I dunno why I headed north; it was just instinctive I suppose. I just kept going. Eventually I reached a coast where there was absolutely no vegetation on the land whatsoever. This didn't bug me, because there is nothing on land to interest me. What did bug me were the brownish furry animals on the beaches. They seemed quite nasty to me. Eventually, on an offshore island, I spotted a gang of birds that looked just like me: black bodies with red beaks. I teamed up with them. We were a great flock of youngsters; the feeding was good and we kept out of the way of the three pairs of grumpy grown-ups who bred on the island.",
+      "A couple of years later, the urge to move again hit me. This time I headed south, back to Robben Island. At that time it was easy to find a territory. There were not too many of us. I found a mate. We had chicks each year. They were damned hard work, and even once they could fly we had to keep feeding them, because their beaks were not strong enough to open up mussels and limpets. The moment they were able to fend for themselves, we sent them packing. I am on my third partner now.",
+      "When I started life, the intertidal zone was a struggle. You lot thought that we were on our way to extinction. But then a new kind of mussel appeared, which grew faster, and high up the shore. Life became easier. We had more and more chicks each summer. After a few years they come back, and make a helluva nuisance of themselves. I call them hooligans. There are hundreds of them. How much longer I can hold out against them at my age I don't know. It's me they want out, and to take over my mate. I've not left my territory for decades; if I do, I am a gonner. I am imprisoned on my territory, kept inside it by the hooligans. But I guess you will say that that is not an inappropriate statement to make on Robben Island.",
     |]
   | Vitalik => [|
       "Original Gorilla",
@@ -434,6 +454,7 @@ let pledgeRate = animal => {
   | Vitalik => ("3", "10", 0.025, 40.) // 30% per year (2.5% per month)
   | Glen => ("6", "10", 0.05, 20.)
   | Apthapi
+  | Abo
   | Pancho => ("12", "10", 0.1, 10.)
   | Simon
   | Andy
@@ -471,7 +492,7 @@ type launchStatus =
   | Launched
   | LaunchDate(MomentRe.Moment.t);
 
-let nextLaunchDate = MomentRe.momentUtcDefaultFormat("2020-06-18T17:00:00");
+let nextLaunchDate = MomentRe.momentUtcDefaultFormat("2020-06-25T17:00:00");
 
 let isLaunched: t => launchStatus =
   anAnimal =>
@@ -495,8 +516,9 @@ let isLaunched: t => launchStatus =
     | Hook
     | Mijungla
     | Ajayu
+    | Arthur
     | Llajuita => Launched
-    | Arthur => LaunchDate(nextLaunchDate)
+    | Abo => LaunchDate(nextLaunchDate)
     };
 
 let hasGovernance: t => bool =
@@ -521,6 +543,7 @@ let hasGovernance: t => bool =
     | Ajayu
     | Hook
     | Arthur
+    | Abo
     | Llajuita => false
     | Glen => true
     };
