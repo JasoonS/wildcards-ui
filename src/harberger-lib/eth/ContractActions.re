@@ -151,6 +151,13 @@ let voteContractMainnet = "0x03e051b7e42480Cc9D54F1caB525D2Fea2cF4d83";
 let voteContractGoerli = "0x316C5f8867B21923db8A0Bd6890A6BFE0Ab6F9d2";
 // let voteContractRinkeby = "0x316C5f8867B21923db8A0Bd6890A6BFE0Ab6F9d2";
 
+let stewardAddressMaticMain = "0x6D47CF86F6A490c6410fC082Fd1Ad29CF61492d0";
+let stewardAddressMumbai = "0x0C00CFE8EbB34fE7C31d4915a43Cde211e9F0F3B";
+
+let loyaltyTokenAddressMaticMain = "0x773c75c2277eD3e402BDEfd28Ec3b51A3AfbD8a4";
+let loyaltyTokenAddressMumbai = "0xd7d8c42ab5b83aa3d4114e5297989dc27bdfb715";
+// let loyaltyTokenAddressRinkbey = "0xd7d8c42ab5b83aa3d4114e5297989dc27bdfb715";
+
 let useStewardAbi = () => {
   switch (RootProvider.useStewardAbi()) {
   | Some(abi) => abi
@@ -408,13 +415,13 @@ let useApproveLoyaltyTokens = () => {
     setTxState(_ => Created);
 
     switch (optLoyaltyTokens, optNetworkId) {
-    | (Some(steward), Some(networkId)) =>
+    | (Some(loyaltyTokenCotract), Some(networkId)) =>
       let voteContractAddress =
         networkId->voteAddressFromChainId
         |||| "0x0000000000000000000000000000000000000500";
 
       let claimLoyaltyTokenPromise =
-        steward.approve(.
+        loyaltyTokenCotract.approve(.
           voteContractAddress,
           "100000000000000000000000",
           {
