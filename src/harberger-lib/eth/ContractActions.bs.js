@@ -11,6 +11,7 @@ import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
 import * as Web3$WildCards from "../Web3.bs.js";
 import * as Async$WildCards from "../Async.bs.js";
 import * as Core from "@web3-react/core";
+import * as Config$WildCards from "../Config.bs.js";
 import * as Globals$WildCards from "../Globals.bs.js";
 import * as QlHooks$WildCards from "../QlHooks.bs.js";
 import * as TokenId$WildCards from "../TokenId.bs.js";
@@ -40,24 +41,6 @@ var stewardAddressRinkeby = "0x229Cb219F056A9097b2744594Bc37597380854E8";
 var loyaltyTokenAddressMainnet = "0x773c75c2277eD3e402BDEfd28Ec3b51A3AfbD8a4";
 
 var loyaltyTokenAddressGoerli = "0xd7d8c42ab5b83aa3d4114e5297989dc27bdfb715";
-
-function getDaiContractAddress(chain, chainId) {
-  if (chain >= 2) {
-    return "NEVER";
-  } else if (chainId !== 5) {
-    if (chainId !== 137) {
-      if (chainId !== 80001) {
-        return "0xba97BeC8d359D73c81D094421803D968A9FBf676";
-      } else {
-        return "0xeb37A6dF956F1997085498aDd98b25a2f633d83F";
-      }
-    } else {
-      return "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
-    }
-  } else {
-    return "0xba97BeC8d359D73c81D094421803D968A9FBf676";
-  }
-}
 
 function getStewardAddress(chain, chainId) {
   if (chain >= 2) {
@@ -286,7 +269,7 @@ function useBuy(chain, animal, library, account, parentChainId) {
   var sendMetaTx = QlHooks$WildCards.useMetaTx(undefined);
   var chainIdInt = getChildChainId(parentChainId);
   var chainId = new BnJs(chainIdInt);
-  var verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  var verifyingContract = Config$WildCards.Dai.getAddress(undefined, chain, parentChainId, undefined);
   var spender = getStewardAddress(chain, chainIdInt);
   var networkName = getMaticNetworkName(chainIdInt);
   var arg = Belt_Option.getWithDefault(account, CONSTANTS$WildCards.nullEthAddress);
@@ -390,7 +373,7 @@ function useBuyAuction(chain, animal, library, account, parentChainId) {
   var sendMetaTx = QlHooks$WildCards.useMetaTx(undefined);
   var chainIdInt = getChildChainId(parentChainId);
   var chainId = new BnJs(chainIdInt);
-  var verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  var verifyingContract = Config$WildCards.Dai.getAddress(undefined, chain, parentChainId, undefined);
   var spender = getStewardAddress(chain, chainIdInt);
   var networkName = getMaticNetworkName(chainIdInt);
   var arg = Belt_Option.getWithDefault(account, CONSTANTS$WildCards.nullEthAddress);
@@ -548,7 +531,7 @@ function useUpdateDeposit(chain, library, account, parentChainId) {
   var sendMetaTx = QlHooks$WildCards.useMetaTx(undefined);
   var chainIdInt = getChildChainId(parentChainId);
   var chainId = new BnJs(chainIdInt);
-  var verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  var verifyingContract = Config$WildCards.Dai.getAddress(undefined, chain, parentChainId, undefined);
   var spender = getStewardAddress(chain, chainIdInt);
   var networkName = getMaticNetworkName(chainIdInt);
   var arg = Belt_Option.getWithDefault(account, CONSTANTS$WildCards.nullEthAddress);
@@ -835,7 +818,6 @@ export {
   stewardAddressMumbai ,
   loyaltyTokenAddressMaticMain ,
   loyaltyTokenAddressMumbai ,
-  getDaiContractAddress ,
   getStewardAddress ,
   getMaticNetworkName ,
   getChildChainId ,

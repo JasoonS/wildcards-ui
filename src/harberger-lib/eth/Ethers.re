@@ -20,6 +20,12 @@ type txError = {
   message: string,
   stack: option(string),
 };
+
+type ethersBigNumber;
+
+[@bs.module "ethers"] [@bs.scope "utils"]
+external formatUnits: (ethersBigNumber, int) => string = "formatUnits";
+
 [@bs.new] [@bs.module "ethers"] [@bs.scope "providers"]
 external makeProvider: string => Web3.rawProvider = "JsonRpcProvider";
 
@@ -27,3 +33,28 @@ external makeProvider: string => Web3.rawProvider = "JsonRpcProvider";
 external waitForTransaction:
   (Web3.rawProvider, string) => Promise.Js.t(txResult, txError) =
   "waitForTransaction";
+
+type ethersContract;
+type abi = array(string);
+
+[@bs.new] [@bs.module "ethers"]
+external getContract:
+  (Web3.ethAddress, abi, Web3.rawProvider) => ethersContract =
+  "Contract";
+
+module ERC20 = {
+  type t;
+
+  let abi = [|
+    "function balanceOf(address) view returns (uint)",
+    "function approve(address spender, uint amount)",
+  |];
+
+  let make = (address, provider): t => {
+    getContract(address, abi, provider)->Obj.magic;
+  };
+
+  [@bs.send]
+  external getBalance: (t, Web3.ethAddress) => Js.Promise.t(ethersBigNumber) =
+    "getBalance";
+};

@@ -7,6 +7,7 @@
     "@apollo/react-hooks": "^3.1.5",
     "@apollo/react-ssr": "^3.1.5",
     "@baransu/graphql_ppx_re": "^0.7.1",
+    "@maticnetwork/maticjs": "^2.0.15",
     "@polkadot/util": "^2.8.1",
     "@transak/transak-sdk": "^1.0.26",
     "@web3-react/core": "^6.1.1",

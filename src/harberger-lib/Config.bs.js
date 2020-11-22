@@ -58,8 +58,54 @@ var Transak = {
   getConfig: getConfig
 };
 
+function getAddress(isForTestingEthMaticBridgeOnMaticOpt, chain, parentChainId, param) {
+  var isForTestingEthMaticBridgeOnMatic = isForTestingEthMaticBridgeOnMaticOpt !== undefined ? isForTestingEthMaticBridgeOnMaticOpt : false;
+  if (chain === 1) {
+    if (parentChainId >= 6) {
+      if (parentChainId !== 42) {
+        if (parentChainId !== 137) {
+          if (isForTestingEthMaticBridgeOnMatic) {
+            return "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1";
+          } else {
+            return "0xeb37A6dF956F1997085498aDd98b25a2f633d83F";
+          }
+        } else {
+          return "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
+        }
+      } else {
+        return "0xba97BeC8d359D73c81D094421803D968A9FBf676";
+      }
+    } else if (parentChainId !== 1) {
+      if (parentChainId >= 5) {
+        if (isForTestingEthMaticBridgeOnMatic) {
+          return "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1";
+        } else {
+          return "0xeb37A6dF956F1997085498aDd98b25a2f633d83F";
+        }
+      } else if (isForTestingEthMaticBridgeOnMatic) {
+        return "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1";
+      } else {
+        return "0xeb37A6dF956F1997085498aDd98b25a2f633d83F";
+      }
+    } else {
+      return "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";
+    }
+  }
+  var switcher = parentChainId - 2 | 0;
+  if ((switcher > 134 || switcher < 0) && (switcher + 1 >>> 0) <= 136) {
+    return "0x6b175474e89094c44da98b954eedeac495271d0f";
+  } else {
+    return "0x655f2166b0709cd575202630952d71e2bb0d61af";
+  }
+}
+
+var Dai = {
+  getAddress: getAddress
+};
+
 export {
   Transak ,
+  Dai ,
   
 }
 /* No side effect */

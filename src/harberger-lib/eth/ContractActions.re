@@ -91,19 +91,6 @@ let loyaltyTokenAddressMaticMain = "0x773c75c2277eD3e402BDEfd28Ec3b51A3AfbD8a4";
 let loyaltyTokenAddressMumbai = "0xd7d8c42ab5b83aa3d4114e5297989dc27bdfb715";
 // let loyaltyTokenAddressRinkbey = "0xd7d8c42ab5b83aa3d4114e5297989dc27bdfb715";
 
-let getDaiContractAddress = (chain: Client.context, chainId) =>
-  switch (chain) {
-  | Neither
-  | MaticQuery =>
-    switch (chainId) {
-    | 137 => "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
-    | 80001 => "0xeb37A6dF956F1997085498aDd98b25a2f633d83F"
-    | 5
-    | _ => "0xba97BeC8d359D73c81D094421803D968A9FBf676"
-    }
-  | MainnetQuery => "NEVER"
-  };
-
 let getStewardAddress = (chain: Client.context, chainId) =>
   switch (chain) {
   | Neither
@@ -366,7 +353,7 @@ let useBuy =
 
   let chainIdInt = parentChainId->getChildChainId;
   let chainId = chainIdInt->BN.newInt_;
-  let verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  let verifyingContract = Config.Dai.getAddress(~chain, ~parentChainId, ());
   let spender = getStewardAddress(chain, chainIdInt);
   let networkName = chainIdInt->getMaticNetworkName;
 
@@ -488,7 +475,7 @@ let useBuyAuction =
 
   let chainIdInt = parentChainId->getChildChainId;
   let chainId = chainIdInt->BN.newInt_;
-  let verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  let verifyingContract = Config.Dai.getAddress(~chain, ~parentChainId, ());
   let spender = getStewardAddress(chain, chainIdInt);
   let networkName = chainIdInt->getMaticNetworkName;
 
@@ -644,7 +631,7 @@ let useUpdateDeposit =
 
   let chainIdInt = parentChainId->getChildChainId;
   let chainId = chainIdInt->BN.newInt_;
-  let verifyingContract = getDaiContractAddress(chain, chainIdInt);
+  let verifyingContract = Config.Dai.getAddress(~chain, ~parentChainId, ());
   let spender = getStewardAddress(chain, chainIdInt);
   let networkName = chainIdInt->getMaticNetworkName;
 
