@@ -10,6 +10,7 @@ import * as Web3Utils from "web3-utils";
 import * as Belt_Option from "bs-platform/lib/es6/belt_Option.js";
 import * as Caml_format from "bs-platform/lib/es6/caml_format.js";
 import * as Caml_option from "bs-platform/lib/es6/caml_option.js";
+import * as Matic$WildCards from "../bindings/matic/Matic.bs.js";
 import * as Core from "@web3-react/core";
 import * as Animal$WildCards from "../Animal.bs.js";
 import * as Config$WildCards from "../Config.bs.js";
@@ -159,7 +160,7 @@ function Buy$Buy(Props) {
                     txState: match[1],
                     closeButtonText: "Back to view Animal",
                     chain: chain
-                  }, React.createElement("p", undefined, "This wildcard uses " + currency), isAbleToBuy ? React.createElement(React.Fragment, undefined, React.createElement("button", {
+                  }, React.createElement("p", undefined, "This wildcard uses " + currency), React.createElement(Matic$WildCards.DaiToMaticConversion.make, {}), isAbleToBuy ? React.createElement(React.Fragment, undefined, React.createElement("button", {
                               onClick: openTransak
                             }, "Buy More Crypto"), React.createElement("p", undefined, "Your available balance is: " + (paymentTokenBalance + (" " + currency))), React.createElement(RimbleUi.Button, {
                               children: "Buy More " + currency

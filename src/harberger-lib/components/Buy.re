@@ -285,6 +285,7 @@ module Buy = {
       <TxTemplate
         chain txState=txBuyState closeButtonText="Back to view Animal">
         <p> {("This wildcard uses " ++ currency)->React.string} </p>
+        // <Matic.DaiToMaticConversion />
         // TODO: add link to an explainer of what "ether" or "DAI" is.
         {isAbleToBuy
            ? <>
